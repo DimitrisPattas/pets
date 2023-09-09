@@ -9,7 +9,7 @@ This is an example of how you may give instructions on setting up your project l
 
 - Node.js (v18.17.1)
 - npm (v9.6.7)
-- Database (e.g., PostgreSQL v12.0.0, MySQL v8.0.0)
+- PostgreSQL (15.2)
 
 ### Installing Dependencies
 
