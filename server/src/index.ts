@@ -3,12 +3,12 @@ import cors from 'cors';
 
 import { dbManager } from './config/database';
 
-import usersRoutes from './routes/api/user.routes';
+import userRoutes from './routes/api/user.routes';
+import petRoutes from './routes/api/pet.routes';
 
 const app = express();
 
 dbManager.initialize().then(() => {
-  // communicate only with json
   app.use(express.json());
   app.use(
     cors({
@@ -18,7 +18,8 @@ dbManager.initialize().then(() => {
   );
 
   // Use the users routes
-  app.use('/api', usersRoutes);
+  app.use('/api', userRoutes);
+  app.use('/api', petRoutes);
 
   app.listen(8080, () => {
     console.log('Listening to port 8080');

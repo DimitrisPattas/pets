@@ -15,7 +15,7 @@ import { Location } from './location.entity';
 @Entity()
 export class Pet {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;
@@ -29,14 +29,20 @@ export class Pet {
   @Column()
   gender: string;
 
-  @ManyToOne(() => User, (user) => user.pets)
+  @ManyToOne(() => User, (user) => user.pets, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'owner_id' })
   owner: User;
 
   @Column({ enum: ['missing', 'adoption'], default: 'missing' })
   status: string;
 
-  @ManyToOne(() => Location, (location) => location.pets)
+  @ManyToOne(() => Location, (location) => location.pets, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'location_id' })
   location: Location;
 
@@ -54,4 +60,5 @@ export class Pet {
 
   @OneToMany(() => Image, (image) => image.pet)
   images: Image[];
+  petData: Promise<User>;
 }

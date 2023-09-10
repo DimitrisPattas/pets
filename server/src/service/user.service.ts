@@ -8,7 +8,7 @@ export const userService = {
     return await dataSource.getRepository(User).find();
   },
 
-  getUserById: async (id: number) => {
+  getUserById: async (id: string) => {
     return await dataSource.getRepository(User).findOneBy({ id });
   },
 
@@ -17,12 +17,12 @@ export const userService = {
     return await dataSource.getRepository(User).save(user);
   },
 
-  updateUser: async (id: number, userData: Partial<User>) => {
+  updateUser: async (id: string, userData: Partial<User>) => {
     await dataSource.getRepository(User).update(id, userData);
     return await dataSource.getRepository(User).findOneBy({ id });
   },
 
-  deleteUser: async (id: number) => {
+  deleteUser: async (id: string) => {
     const user = await dataSource.getRepository(User).findOneBy({ id });
     if (user) {
       await dataSource.getRepository(User).remove(user);

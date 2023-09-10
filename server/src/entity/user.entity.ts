@@ -4,7 +4,7 @@ import { Pet } from './pet.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ length: 255, name: 'first_name' })
   firstName: string;
@@ -12,7 +12,7 @@ export class User {
   @Column({ length: 255, name: 'last_name' })
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
