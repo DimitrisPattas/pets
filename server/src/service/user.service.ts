@@ -1,5 +1,6 @@
 import { dbManager } from '../config/database';
 import { User } from '../entity/user.entity';
+import bcryptjs from 'bcryptjs';
 
 const dataSource = dbManager.getDataSource();
 
@@ -12,9 +13,18 @@ export const userService = {
     return await dataSource.getRepository(User).findOneBy({ id });
   },
 
+  getUserByEmail: async (email: string) => {
+    return await dataSource.getRepository(User).findOneBy({ email });
+  },
+
   createUser: async (userData: Partial<User>) => {
-    const user = dataSource.getRepository(User).create(userData);
-    return await dataSource.getRepository(User).save(user);
+    const { password, ...user } = await dataSource.getRepository(User).save({
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      password: await bcryptjs.hash(userData.password, 10),
+    });
+    return user;
   },
 
   updateUser: async (id: string, userData: Partial<User>) => {

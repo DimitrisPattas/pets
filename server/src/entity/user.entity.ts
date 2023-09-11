@@ -18,7 +18,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ length: 15 })
   phone: string;
 
   @OneToMany(() => Pet, (pet) => pet.owner)

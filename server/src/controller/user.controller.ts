@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { userService } from '../service/user.service';
+import { createUserValidation } from '../validation/user.validation';
 
 export const userController = {
   getAllUsers: async (req: Request, res: Response) => {
@@ -29,6 +30,12 @@ export const userController = {
 
   createUser: async (req: Request, res: Response) => {
     try {
+      const body = req.body;
+      const { error } = createUserValidation.validate(body);
+
+      if (error) {
+        return res.status(400).send(error.details);
+      }
       const userData = req.body;
       const user = await userService.createUser(userData);
       res.json(user);

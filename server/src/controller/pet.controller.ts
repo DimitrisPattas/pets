@@ -4,7 +4,6 @@ import { imageService } from '../service/image.service';
 import { locationService } from '../service/location.service';
 import { userService } from '../service/user.service';
 import { Pet } from '../entity/pet.entity';
-import { User } from '../entity/user.entity';
 
 export const petController = {
   getAllPets: async (req: Request, res: Response) => {
@@ -79,6 +78,7 @@ export const petController = {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   },
+
   uploadImage: async (req: Request, res: Response) => {
     try {
       const { petId } = req.params;
@@ -89,12 +89,8 @@ export const petController = {
         const imagePaths = uploadedImages.map((image) => image.filename);
         // TODO rename to imageName
         for (const imagePath of imagePaths) {
-          let image = await imageService.saveImage(imagePath, pet);
-          //   pet.images.push(image);
+          await imageService.saveImage(imagePath, pet);
         }
-
-        // await petService.updatePet(petId, pet);
-
         res.json({ message: 'Image(s) uploaded successfully' });
       } else {
         res.status(404).json({ message: 'Pet not found' });
