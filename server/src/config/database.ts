@@ -7,11 +7,11 @@ class DatabaseManager {
   private constructor() {
     this._dataSource = new DataSource({
       type: 'postgres',
-      host: 'localhost',
-      port: 5433,
-      username: 'postgres',
-      password: 'root',
-      database: 'pet_db',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_SCHEMMA,
       entities: ['src/entity/*.ts'],
       logging: false,
       synchronize: true,
