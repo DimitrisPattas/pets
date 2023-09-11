@@ -23,6 +23,7 @@ export const userService = {
       lastName: userData.lastName,
       email: userData.email,
       password: await bcryptjs.hash(userData.password, 10),
+      phone: userData.phone,
     });
     return user;
   },

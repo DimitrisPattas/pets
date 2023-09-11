@@ -5,9 +5,9 @@ import { authController } from '../../controller/auth.controller';
 
 const router = Router();
 
-router.post('/api/register', authController.register);
-router.post('/api/login', authController.login);
-router.post('/api/logout', authMiddleware, authController.logout);
+router.post('/register', authController.register);
+router.post('/login', authController.login);
+router.post('/logout', authMiddleware, authController.logout);
 
 router.get('/users', authMiddleware, userController.getAllUsers);
 router.get('/users/:id', authMiddleware, userController.getUserById);

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { userService } from '../service/user.service';
 
-export const AuthMiddleware = async (
+export const authMiddleware = async (
   req: Request,
   res: Response,
   next: Function

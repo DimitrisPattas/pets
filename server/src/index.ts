@@ -1,5 +1,8 @@
+import 'dotenv/config';
+
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import { dbManager } from './config/database';
 
@@ -10,6 +13,7 @@ const app = express();
 
 dbManager.initialize().then(() => {
   app.use(express.json());
+  app.use(cookieParser());
   app.use(
     cors({
       credentials: true,
