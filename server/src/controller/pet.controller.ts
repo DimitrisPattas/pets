@@ -33,7 +33,7 @@ export const petController = {
 
   createPet: async (req: Request, res: Response) => {
     try {
-      const user = await userService.getUserById(req.params.userId);
+      const user = await userService.getUserById(req['user']['id']);
       if (user) {
         const petData = req.body as Pet;
         petData.owner = user;

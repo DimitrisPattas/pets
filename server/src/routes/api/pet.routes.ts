@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/pets', petController.getAllPets);
 router.get('/pets/:id', petController.getPetById);
-router.post('/pets/user/:userId', authMiddleware, petController.createPet);
+router.post('/pets', authMiddleware, petController.createPet);
 router.put('/pets/:id', authMiddleware, petController.updatePet);
 router.delete('/pets/:id', authMiddleware, petController.deletePet);
 router.post(
