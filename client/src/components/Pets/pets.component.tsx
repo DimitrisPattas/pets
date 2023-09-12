@@ -1,13 +1,19 @@
 import React from 'react';
 import { useGetPetsQuery } from '../../service/pet.service';
 import { Box, CircularProgress, Typography } from '@mui/material';
+import PetList from '../PetList/petsList.component';
 
 const Pets = () => {
   const { data, error, isFetching } = useGetPetsQuery({});
 
   if (isFetching) {
     return (
-      <Box display="flex" justifyContent="center" alignItems={"center"} minHeight={"80vh"}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems={'center'}
+        minHeight={'80vh'}
+      >
         <CircularProgress size="4rem" />
       </Box>
     );
@@ -25,10 +31,14 @@ const Pets = () => {
   }
 
   if (error) {
-    return (<>An error has occured.</>);
+    return <>An error has occured.</>;
   }
 
-  return (<div>Pets</div>);
+  return (
+    <div style={{marginTop: "50px"}}>
+      <PetList pets={data}/>
+    </div>
+  );
 };
 
 export default Pets;

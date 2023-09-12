@@ -32,6 +32,6 @@ router.put(
   petController.updateLocation
 );
 
-router.use('/api/uploads', express.static('./uploads'));
+router.use('/uploads', express.static('./uploads'));
 
 export default router;
