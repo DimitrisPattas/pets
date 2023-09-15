@@ -64,25 +64,13 @@ export const authController = {
       id: existingUser.id,
     };
 
-    const token = sign(payload, process.env.SECRET_KEY);
-
-    res.cookie('jwt', token, {
-      httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    const token = sign(payload, process.env.SECRET_KEY, {
+      expiresIn: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
       message: 'Login successful',
-    });
-  },
-
-  logout: async (req: Request, res: Response) => {
-    res.cookie('jwt', '', {
-      maxAge: 0,
-    });
-
-    res.status(200).json({
-      message: 'Logout successful',
+      accessToken: token,
     });
   },
 };

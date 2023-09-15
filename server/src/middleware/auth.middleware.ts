@@ -8,7 +8,8 @@ export const authMiddleware = async (
   next: Function
 ) => {
   try {
-    const jwt = req.cookies['jwt'];
+    const jwt = req.headers['x-access-token'] as string;
+
     const payload: any = verify(jwt, process.env.SECRET_KEY);
 
     if (!payload) {
