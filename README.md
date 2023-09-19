@@ -2,11 +2,11 @@
 Pet Adoption API is a TypeScript-based backend service that allows users to create accounts, add pets for adoption, and view available pets for adoption.
 
 # Features
-### User authentication and authorization
-### User registration
-### Pet creation
-### Get all pets
-### Update pets
+- User authentication and authorization
+- User registration
+- Pet creation
+- Get all pets
+- Update pets
 
 # Getting Started
 ### Prerequisites
